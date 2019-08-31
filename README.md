@@ -1,2 +1,2 @@
 # wrap-fetch
-Wrap a fetch API to simplify for GET, POST, UPDATE, DELETE requests
+Wrap a fetch API to simplify GET, POST, UPDATE, DELETE requests
