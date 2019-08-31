@@ -1,0 +1,9 @@
+# system files
+.DS_Store
+
+# node.js files
+node_modules/
+npm-debug.log
+
+# project
+dist/

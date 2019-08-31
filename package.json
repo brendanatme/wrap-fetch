@@ -1,0 +1,32 @@
+{
+  "name": "@brendanatme/wrap-fetch",
+  "version": "0.0.0",
+  "description": "Wrap a fetch API to simplify GET, POST, UPDATE, DELETE requests",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "npm run test",
+    "build": "babel src -d dist",
+    "release": "node scripts/release.js",
+    "test": "mocha -- --require @babel/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brendanatme/js-helpers.git"
+  },
+  "author": "brendanatme",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brendanatme/js-helpers/issues"
+  },
+  "homepage": "https://github.com/brendanatme/js-helpers#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "chai": "^4.2.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "mocha": "^6.2.0"
+  }
+}
