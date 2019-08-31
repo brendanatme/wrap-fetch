@@ -1,6 +1,6 @@
 {
   "name": "@brendanatme/wrap-fetch",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Wrap a fetch API to simplify GET, POST, UPDATE, DELETE requests",
   "main": "index.js",
   "scripts": {
