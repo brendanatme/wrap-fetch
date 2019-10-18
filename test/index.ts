@@ -2,11 +2,11 @@
  * TODO: test
  */ 
 import fetch from 'isomorphic-unfetch';
-import { wrapFetch } from '../src';
+import { wrapFetch, WrappedFetchApi } from '../src';
 import { expect } from 'chai';
 
 describe('wrapFetch', () => {
-  let wrapped;
+  let wrapped: WrappedFetchApi;
 
   before(() => {
     wrapped = wrapFetch(fetch, 'http://localhost:3000');
