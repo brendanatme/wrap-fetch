@@ -1,7 +1,7 @@
 import { Methods, WrappedFetchApi } from './types';
 
 const wrapFetch = (
-  f: (url: string, options: any) => any,
+  f: any,
   baseUrl: string,
   defaultOptions: any = {},
   beforeHook: (method: Methods, url: string) => void = () => {},
