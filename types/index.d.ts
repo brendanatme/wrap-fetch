@@ -3,7 +3,7 @@ export interface WrappedFetchApi {
   post: (endpoint: string, body: any) => any;
 }
 
-export type wrapFetch = (
+export type WrapFetch = (
   fetchLib: any,
   baseUrl: string,
   defaultOptions: any,
