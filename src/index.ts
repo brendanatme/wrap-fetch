@@ -18,7 +18,10 @@ const wrapFetch = (
       method,
     }).then((response: any) => {
       if (!response.ok) {
-        throw new Error(`Error in "wrapFetch": ${method} ${url} failed: ${response.status}`);
+        throw new Error(JSON.stringify({
+          status: response.status,
+          statusText: response.statusText,
+        }));
       }
       return response;
     }).then((response: any) => response.json());
