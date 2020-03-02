@@ -2,7 +2,7 @@
  * TODO: test
  */ 
 import fetch from 'isomorphic-unfetch';
-import { wrapFetch, WrappedFetchApi } from '../src';
+import { parseError, wrapFetch, WrappedFetchApi } from '../src';
 import { expect } from 'chai';
 
 describe('wrapFetch', () => {

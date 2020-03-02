@@ -1,4 +1,11 @@
-import { Methods, WrappedFetchApi } from './types';
+import { FetchError, Methods, WrappedFetchApi } from './types';
+
+const parseError = (err: Error): FetchError => {
+  const s = err.toString();
+  const json = s.replace('Error: ', '');
+  const parsed = JSON.parse(json);
+  return parsed;
+}
 
 const wrapFetch = (
   f: any,
@@ -40,6 +47,7 @@ const wrapFetch = (
 };
 
 export {
+  parseError,
   wrapFetch,
   WrappedFetchApi,
 }
