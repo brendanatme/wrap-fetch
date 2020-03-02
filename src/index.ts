@@ -25,11 +25,12 @@ const wrapFetch = (
   };
 
   return {
-    get<P>(url: string): Promise<P> { return _fetch(Methods.GET, url); },
-    post<P>(url: string, data: any): Promise<P> {
+    get<P>(url: string, options: any = {}): Promise<P> { return _fetch(Methods.GET, url, options); },
+    post<P>(url: string, data: any, options: any = {}): Promise<P> {
       return _fetch(Methods.POST, url, {
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json' },
+        ...options
       });
     },
   };
