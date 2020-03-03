@@ -7,6 +7,11 @@ const parseError = (err: Error): FetchError => {
   return parsed;
 }
 
+const POST_HEADERS = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+}
+
 const wrapFetch = (
   f: any,
   baseUrl: string,
@@ -44,18 +49,26 @@ const wrapFetch = (
     },
     
     patch<P>(url: string, data: any, options: any = {}): Promise<P> {
+      const { headers, ...remainder } = options
       return _fetch(Methods.PATCH, url, {
         body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' },
-        ...options
+        headers: {
+          ...POST_HEADERS,
+          ...headers,
+        },
+        ...remainder
       });
     },
     
     post<P>(url: string, data: any, options: any = {}): Promise<P> {
+      const { headers, ...remainder } = options
       return _fetch(Methods.POST, url, {
         body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' },
-        ...options
+        headers: {
+          ...POST_HEADERS,
+          ...headers,
+        },
+        ...remainder
       });
     },
   };
