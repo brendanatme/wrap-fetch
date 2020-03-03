@@ -35,7 +35,22 @@ const wrapFetch = (
   };
 
   return {
-    get<P>(url: string, options: any = {}): Promise<P> { return _fetch(Methods.GET, url, options); },
+    del<P>(url: string, options: any = {}): Promise<P> {
+      return _fetch(Methods.DELETE, url, options);
+    },
+
+    get<P>(url: string, options: any = {}): Promise<P> {
+      return _fetch(Methods.GET, url, options);
+    },
+    
+    patch<P>(url: string, data: any, options: any = {}): Promise<P> {
+      return _fetch(Methods.PATCH, url, {
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+        ...options
+      });
+    },
+    
     post<P>(url: string, data: any, options: any = {}): Promise<P> {
       return _fetch(Methods.POST, url, {
         body: JSON.stringify(data),
