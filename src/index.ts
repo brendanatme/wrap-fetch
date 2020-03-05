@@ -36,7 +36,7 @@ const wrapFetch = (
         }));
       }
       return response;
-    }).then((response: any) => response && response.json ? response.json() : response);
+    }).then((response: any) => response.status !== 204 ? response.json() : response);
   };
 
   return {
