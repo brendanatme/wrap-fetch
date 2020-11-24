@@ -19,10 +19,14 @@ const beforeHook = (method, url) => console.log(`myApi: ${method} ${url}`);
 
 const myApi = wrapFetch(myFetchFunction, myBaseUrl, myOptions, beforeHook);
 
-myApi.get('/my-get-endpoint').then((data) => { console.log(data); });
+// ...
 
-const myData = { myKey: 'my data' };
+const got = await myApi.get('/my-get-endpoint');
 
-myApi.post('/my-post-endpoint', myData).then((results) => { console.log(results); });
+// ...
+
+const posted = await myApi.post('/my-post-endpoint', {
+  foo: 'bar',
+});
 
 ```
