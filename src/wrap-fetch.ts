@@ -75,6 +75,10 @@ export const wrapFetch = (
       config = {
         ...config,
         ...options,
+        headers: {
+          ...config.headers,
+          ...options.headers,
+        },
       };
     },
 
