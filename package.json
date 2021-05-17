@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/brendanatme/js-helpers#readme",
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
+    "@babel/cli": "^7.13.16",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
