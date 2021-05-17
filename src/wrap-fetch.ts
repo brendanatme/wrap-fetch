@@ -7,7 +7,7 @@
  * serves as a lighter-weight replacement of libraries like Axios,
  * and also reduces boilerplate code
  */
-import { HookFn, Methods, WrappedFetchApi } from './types';
+import { ConfigModifierFn, HookFn, Methods, WrappedFetchApi } from './types';
 
 const POST_HEADERS = {
   'Accept': 'application/json',
@@ -21,13 +21,14 @@ export const wrapFetch = (
   beforeHook: HookFn = () => { },
   afterHook: HookFn = () => { },
 ): WrappedFetchApi => {
+  const interceptors: ConfigModifierFn[] = [];
   let config = {
     ...defaultOptions,
   };
 
   const _fetch = async (method: Methods, url: string, options: any = {}) => {
     const requestUrl = `${baseUrl}${url}`;
-    const requestConfig = {
+    const requestConfig = interceptors.reduce((result, next) => next(result), {
       ...config,
       ...options,
       headers: {
@@ -35,7 +36,7 @@ export const wrapFetch = (
         ...options.headers,
       },
       method,
-    };
+    });
 
     beforeHook(method, requestUrl, requestConfig);
 
@@ -85,6 +86,10 @@ export const wrapFetch = (
     del: makeGetFn(Methods.DELETE),
 
     get: makeGetFn(Methods.GET),
+
+    intercept(interceptor: ConfigModifierFn): void {
+      interceptors.push(interceptor);
+    },
 
     patch: makePostFn(Methods.PATCH),
 
