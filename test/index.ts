@@ -1,22 +1,12 @@
-/**
- * TODO: test
- */ 
-import fetch from 'isomorphic-unfetch';
-import { parseError, wrapFetch, WrappedFetchApi } from '../src';
 import { expect } from 'chai';
+import { parseError, wrapFetch } from '../src';
 
-describe('wrapFetch', () => {
-  let wrapped: WrappedFetchApi;
-
-  before(() => {
-    wrapped = wrapFetch(fetch, 'http://localhost:3000');
+describe('index', () => {
+  it('exposes wrapFetch method', () => {
+    expect(wrapFetch).to.be.a('function');
   });
 
-  it('exposes GET method', () => {
-    expect(wrapped.get).to.be.a('function');
-  });
-
-  it('exposes POST method', () => {
-    expect(wrapped.post).to.be.a('function');
+  it('exposes parseError method', () => {
+    expect(parseError).to.be.a('function');
   });
 });
