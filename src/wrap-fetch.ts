@@ -15,7 +15,7 @@ const POST_HEADERS = {
 };
 
 export const wrapFetch = (
-  f: any,
+  fetchImplementation: any,
   baseUrl: string,
   defaultOptions: any = {},
   beforeHook: HookFn = () => { },
@@ -40,7 +40,7 @@ export const wrapFetch = (
 
     beforeHook(method, requestUrl, requestConfig);
 
-    const response: any = await f(requestUrl, requestConfig);
+    const response: any = await fetchImplementation(requestUrl, requestConfig);
 
     afterHook(method, requestUrl, requestConfig, response);
 
