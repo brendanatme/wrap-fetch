@@ -7,7 +7,7 @@
  * serves as a lighter-weight replacement of libraries like Axios,
  * and also reduces boilerplate code
  */
-import { ConfigModifierFn, HookFn, Methods, WrappedFetchApi } from './types';
+import { ConfigModifierFn, DataTransformerFn, HookFn, Methods, WrappedFetchApi } from './types';
 
 const POST_HEADERS = {
   'Accept': 'application/json',
@@ -22,6 +22,8 @@ export const wrapFetch = (
   afterHook: HookFn = () => { },
 ): WrappedFetchApi => {
   const interceptors: ConfigModifierFn[] = [];
+  const transformers: DataTransformerFn[] = [];
+  
   let config = {
     ...defaultOptions,
   };
@@ -51,7 +53,9 @@ export const wrapFetch = (
       }));
     }
 
-    return response.status !== 204 ? response.json() : response;
+    const data = response.status !== 204 ? response.json() : response;
+
+    return transformers.reduce((result, next) => next(result), data);
   };
 
   const makeGetFn = (method: Methods) => <P>(url: string, options: any = {}): Promise<P> => _fetch(method, url, options);
@@ -96,5 +100,9 @@ export const wrapFetch = (
     post: makePostFn(Methods.POST),
 
     put: makePostFn(Methods.PUT),
+
+    transform(transformer: DataTransformerFn): void {
+      transformers.push(transformer);
+    }
   };
 };

@@ -20,6 +20,7 @@ export interface WrappedFetchApi {
   patch<P>(url: string, body: any, options?: any): Promise<P>;
   post<P>(url: string, body: any, options?: any): Promise<P>;
   put<P>(url: string, body: any, options?: any): Promise<P>;
+  transform(transformer: DataTransformerFn): void;
 }
 
 /**
@@ -33,3 +34,8 @@ export type HookFn = (method?: Methods, requestUrl?: string, requestConfig?: any
  * (useful for hooking to redux store.getState(), etc.)
  */
 export type ConfigModifierFn = (config: any) => any;
+
+/**
+ * allow user to transform data before consuming it
+ */
+export type DataTransformerFn = (data: any) => any;
